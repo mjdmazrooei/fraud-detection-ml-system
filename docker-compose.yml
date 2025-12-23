@@ -1,0 +1,27 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app/src
+      - FRAUDSYS_DB_PATH=/app/data/fraudsys.db
+      - FRAUDSYS_EVENT_PATH=/app/data/transactions.jsonl
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./reports:/app/reports
+    depends_on:
+      - worker
+
+  worker:
+    build: .
+    command: ["python", "scripts/ingest_worker.py"]
+    environment:
+      - PYTHONPATH=/app/src
+      - FRAUDSYS_DB_PATH=/app/data/fraudsys.db
+      - FRAUDSYS_EVENT_PATH=/app/data/transactions.jsonl
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./reports:/app/reports
