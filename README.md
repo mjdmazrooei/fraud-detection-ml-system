@@ -1,7 +1,5 @@
 # Real-Time Fraud Detection ML System (End-to-End ML System Design)
 
-A portfolio-grade **ML system design + implementation** project that simulates a real production setup for **real-time transaction fraud detection**.
-
 This repository demonstrates **end-to-end ML engineering**, not just modeling:
 - Event generation (stream simulator)
 - Feature pipeline (near-real-time aggregates)
